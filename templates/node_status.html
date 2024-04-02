@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="refresh" content="300" />
+    <title>Deso Node Status</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 5px;
+        }
+        .error {
+            color: #E42217;
+			background-color: #8C001A;
+        }
+		.good {
+            color: #368BC1;
+			background-color: #2C3539;
+        }
+		body {
+			background-color: #837E7C;
+		}
+    </style>
+</head>
+<body>
+    <h1>Deso Node Status</h1>
+    <hr>
+    <table>
+        <thead>
+            <tr>
+                <th>URL</th>
+                <th>State</th>
+                <th>Latest Header Height</th>
+                <th>Latest Header Timestamp</th>
+                <th>Latest Block Height</th>
+                <th>Latest Tx Index Height</th>
+                <th>Latest Block Timestamp</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for node in nodes %}
+            <tr>
+				{% if node.state == "FULLY_CURRENT" %}
+					<td class="good">{{ node.url }}</td>
+					{% if node.error %}
+						<td class="error">{{ node.error }}</td>
+					{% else %}
+						<td class="good">{{ node.state }}</td>
+						<td class="good">{{ node.latest_header_height }}</td>
+						<td class="good">{{ node.latest_header_timestamp }}</td>
+						<td class="good">{{ node.latest_block_height }}</td>
+						<td class="good">{{ node.latest_tx_index_height }}</td>
+						<td class="good">{{ node.latest_block_timestamp }}</td>
+					{% endif %}
+				{% else %}
+					<td class="error">{{ node.url }}</td>
+					{% if node.error %}
+						<td class="error">{{ node.error }}</td>
+					{% else %}
+						<td class="error">{{ node.state }}</td>
+						<td class="error">{{ node.latest_header_height }}</td>
+						<td class="error">{{ node.latest_header_timestamp }}</td>
+						<td class="error">{{ node.latest_block_height }}</td>
+						<td class="error">{{ node.latest_tx_index_height }}</td>
+						<td class="error">{{ node.latest_block_timestamp }}</td>
+					{% endif %}
+                {% endif %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
