@@ -7,10 +7,12 @@ app = Flask(__name__)
 urls = [
     'https://desocialworld.com/api/v1/node-info',
     'https://node.deso.org/api/v1/node-info',
-    'https://desonode.rylees.net/api/v1/node-info',
+    
     'https://nodeapi.nftz.me/api/v1/node-info',
     'https://bitclout.com/api/v1/node-info'
 ]
+
+#'https://desonode.rylees.net/api/v1/node-info',
 
 headers = {
     'Content-Type': 'application/json'
